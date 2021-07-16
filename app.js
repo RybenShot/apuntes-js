@@ -154,10 +154,10 @@ people[2].name// "raul"
 //  }
 let phrase = 'el perro de san roque no tiene rabo'
 letters = []
-let animals = ['pato', 'perro' , 'gato', 'caballo']
-for ( let i = 0; i < phrase.length; i = i + 1){
-    // console.log(phrase[i])
-    letters.push(phrase[i])
+let animals = ['pato', 'perro', 'gato', 'caballo']
+for (let i = 0; i < phrase.length; i = i + 1) {
+  // console.log(phrase[i])
+  letters.push(phrase[i])
 }
 for (let i = 0; i <= 10; i++) {
   console.log(i)
@@ -175,11 +175,40 @@ while (i < 10) {
   console.log(`${i} es menor que 10`)
   i++
 }
-// do while
- 
+// foreach()
+// let animals = ['pato', 'perro' , 'gato', 'caballo']
+let otherAnimals = []
+animals.forEach(function (animal, i) {
+  console.log(`El animal es ${animal} y se va a mater en el nuevo array en al posicion ${i}`)
+  otherAnimals.push(animal)
+  }
+)
+const persona2 = {//Recorremos todos los valores de la variable persona2
+  nombre: 'Sebas',
+  age: '24'
+}// Recorremos un objeto
+for (key in persona2) {
+  console.warn(`La key en el objeto es ${key} y el valor es ${persona2[key]}`)
+}
+//Chip chop
+//Un ciclo del 0 al 100 en el que 
+//// si el numero es multiplo de 3 diche chip
+//// si el numero es multiplo de 5 diche chop
+//// si el numero es multiplo de 3 y 5 dice chip chop
+for (let i = 1; i <= 100; i++) {
+  if (i % 3 === 0 && i % 5 === 0) {
+    console.error(`${i} CHIPCHOP`)
+  }else if (i % 3 === 0) {
+     console.warn(`${i} chip`)
+   }else if (i % 5 === 0) {
+    console.warn(`${i} chop`)
+  }else{
+    console.log(i)
+  } 
+}
 
 //FECHAS Y HORAS
-let birthday = new Date('11-21-1996')// Mes - Dia - Año
+let birthday = new Date('11-21-1996')// Mes - Dia - Año 
 birthday = new Date('December 11 1996')
 birthday = new Date('11/21/1996')
 // birthday = new Date().getDay() //Te devuelve el dia de la semana qeu estamos ahora en numero
@@ -323,7 +352,7 @@ switch (numberOfTheWeek) {
   default:
     console.log(`Hoy es Domingo`)
 }
- let bebida = 'Coke' //prompt('Que quieres beber hoy?') //Pepsi o Coke
+let bebida = 'Coke' //prompt('Que quieres beber hoy?') //Pepsi o Coke
 let typeOfDrink
 let stock = false
 switch (bebida) {
@@ -345,20 +374,20 @@ if (stock === true) {
 
 
 // FUNCIONES DECLARACIONES y EXPRESIONES
-function greatings(firstName2 = 'Invitado sin nombre' , lastName2 = 'y sin apellido') {//dejamos un valor por defecto 
+function greatings(firstName2 = 'Invitado sin nombre', lastName2 = 'y sin apellido') {//dejamos un valor por defecto 
   return `Hola, buenas tardes ${firstName2} ${lastName2}`
 }
-console.log( greatings('Andres', 'Lopez'))
+console.log(greatings('Andres', 'Lopez'))
 let usersName = []
-let usersData =  ['ivan', 'Andres', 'celia', 'pablo']
-for ( let i = 0; i < usersData.length ; i = i + 1){
+let usersData = ['ivan', 'Andres', 'celia', 'pablo']
+for (let i = 0; i < usersData.length; i = i + 1) {
   storeUsersName(usersData[i])
-  }
+}
 function storeUsersName(firstName) {
   usersName.push(firstName)
 }//Ahora si miramos en consola 'usersData' veremos todos los nombres que se han pasado de una rray a otro
 let ivan = getUserName('Ivan', 'Matas') //Asignamos a una variable el resultado de una funcion
-function getUserName(firstName  , lastName) {
+function getUserName(firstName, lastName) {
   return `${firstName} ${lastName}`
 }
 (function () {// funcion auto-invocada
