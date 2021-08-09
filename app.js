@@ -33,7 +33,7 @@ let = firstName.indexOf('e')// 4
 firstName = 'Pepe' //Reasignamos un nuevo valor a 'firstName'
 let = firstName.lastIndexOf('e')//3. Da la posicion del ULTIMO valor que coincida
 //Includes//////////////////////////////////////////////////
-//Esto se usa para comprovaciones
+//Esto se usa para comprovaciones'
 console.log(favoritePhrase.includes('sido'))//true
 console.log('al raton perez le gusta el queso'.includes('dientes'))//false
 //charAt//////////////////////////////////////////////////
@@ -181,7 +181,7 @@ let otherAnimals = []
 animals.forEach(function (animal, i) {
   console.log(`El animal es ${animal} y se va a mater en el nuevo array en al posicion ${i}`)
   otherAnimals.push(animal)
-  }
+}
 )
 const persona2 = {//Recorremos todos los valores de la variable persona2
   nombre: 'Sebas',
@@ -195,17 +195,18 @@ for (key in persona2) {
 //// si el numero es multiplo de 3 diche chip
 //// si el numero es multiplo de 5 diche chop
 //// si el numero es multiplo de 3 y 5 dice chip chop
-for (let i = 1; i <= 100; i++) {
-  if (i % 3 === 0 && i % 5 === 0) {
-    console.error(`${i} CHIPCHOP`)
-  }else if (i % 3 === 0) {
-     console.warn(`${i} chip`)
-   }else if (i % 5 === 0) {
-    console.warn(`${i} chop`)
-  }else{
-    console.log(i)
-  } 
-}
+// for (let i = 1; i <= 100; i++) {
+//   if (i % 3 === 0 && i % 5 === 0) {
+//     console.error(`${i} CHIPCHOP`)
+//   }else if (i % 3 === 0) {
+//      console.warn(`${i} chip`)
+//    }else if (i % 5 === 0) {
+//     console.warn(`${i} chop`)
+//   }else{
+//     console.log(i)
+//   } 
+// }
+//Lo comento para que no ensucie la consola
 
 //FECHAS Y HORAS
 let birthday = new Date('11-21-1996')// Mes - Dia - Año 
@@ -398,4 +399,101 @@ let autoName = 'Peper';
   console.log(`buenos dias ${autoName}`)
 })(autoName)//si no meto la variable aqui no detectara el nombre
 
+// FUNCIONALIDADES DE LA WINDOWS
+// Lo he saltado pero esta en la semana 5 Martes a final de la segunda parte
 
+//DOM
+let enlaces = document.links// Guardamos todos los links del html en esta variable
+enlaces[1]
+enlaces[2].innerText = 'Esto es un inner text desde el app.js' // añadimos un texto a donde queremos
+enlaces[0].className = 'nav-Link' // SOBREESCRIBIMOS la clase que tenia por la que metemos aqui, osea que la que hubiera antes SE BORRA // Devuelve UNA COLECCION
+enlaces[2].classList[0] = 'innactive' // NO MODIFICA PORQUE ES UNA LISTA DE CLASES
+//Estas funciones no son muy usadas, es mejor usar querySelector
+
+//CONSTRUCTORES // CONSTRUCTOR
+const Person = function (firstName, dob) {
+  //Asignaciones de las propiedades y valores de los hijos que saco de este constructor de Objetos Persona
+  this.firstName = firstName;//this hace referencia al objeto en el que se encuentra
+  this.birthday = new Date(dob);
+  this.calculateAge = function () {// al poner la funcion aqui estamos repitiendo cogigo porque cada vez que usemos este constructor meteremos en la nueva variable esat funcion tambien. Es mejor usar los PROTOTYPES
+    const today = new Date()
+    const age = today.getFullYear() - this.birthday.getFullYear();
+    return age
+  }
+}
+let Sebas2 = new Person('Sebas', '10-03-1996')
+console.log(`${Sebas2.calculateAge()}`)
+const name1 = 'Fran'// variable con una cadena de texto //Forma literal
+const name2 = new String('Fran') // variable con un objeto string con una cadena de texto //forma constructor
+// Prototypes // Prototipos
+function Animal(nombre, dob, especie) {
+  this.nombre = nombre;
+  this.birthday = new Date(dob);
+  this.especie = especie
+}
+Animal.prototype.calculateAge = function () {// Esta funcion solo la podran usar las variables que se hayan creado a partir del contructor de 'Animals'
+  const today = new Date()
+  const age = today.getFullYear() - this.birthday.getFullYear();
+  return age
+}
+//Ahora al ver la variable de 'zura' esat no tendra incorporado la funcion de 'calculateAge'
+let zura = new Animal('zura', '11-12-2005', 'Canario')
+zura.calculateAge()// 16
+zura.age = zura.calculateAge() // Asi guardamos dentro de zura el resultado del calculo de la edad de zura
+
+let Customer = function (firstName, dob, membership) {
+  Person.call(this, firstName, dob)//DE ESTA MANERA HEREDAMOS parametros que hemos escrito anteiormente en otro sitio
+  this.membership = membership// Y podemos anadir otros parametros
+}
+let Cliente = new Customer('Fernando', '10-03-1996', 'vip')
+
+// Azar / aleatorio
+let resultado // Este ejemplo nos dara un numero aleatorio
+function getRandomInt(min, max) {
+  resultado = Math.floor(Math.random() * (max - min)) + min;
+  return resultado //en este caso guardamos el resultado en una variable
+}
+getRandomInt(1, 7)// Aqui pon el numero desde donde hasta donde SIN INCLUIR EL ULTIMO NUMERO
+
+//Tengo que seguir tomando apuntes desde el viernes de las 6 semana
+// mejorar la explicacion y ejemplos de call y this
+
+// OBJETOS
+const Mi_constante = 'foo';
+//Mi_constante = 'test'; // Error
+const objeto = {
+  name: 'Juan',
+  edad: 15
+}
+objeto.edad = 16 // OK // En las variables const slo se peden cambiar los valores dentro del objeto, 
+//objeto = "Juanjo" // Error // no se le puede cambiar el nombre del objeto
+
+//ITERACIONES con for of // for in
+let numerosof = [10, 12, 15];
+numerosof.otro = "foo";
+for (const i in numerosof) {
+  console.log(i);// 0,1,2,"otro"
+}
+for (const i of numerosof) {
+  console.log(i);// 10, 12, 15
+}
+for (const i of numerosof.otro) {
+  console.log(i);// "f", "o", "o"
+}
+// explica los iteradores con el Symbol.iterator pero no se me quedo del todo bien, segunda parte, jueves semana 7 1:50:00
+//yield eas como un return pero solo se pueden usar en funciones generadoras (esto no lo he usado en la vida hulio)
+
+//ARROW FUNCTIONS 
+let arrowAnimal = function (name, sound) {
+  this.name = name;
+  this.sound = sound
+}
+arrowAnimal.prototype.makeNoise = function () {
+  console.log(this.sound);
+}
+arrowAnimal.prototype.startNoise = function(){
+  setTimeout(()=> this.makeNoise(), 1000)
+  // setTimeout(this.makeNoise, 1000)// asi no funciona
+}
+let cat = new arrowAnimal("Selina", "Miau puto");
+cat.startNoise()
